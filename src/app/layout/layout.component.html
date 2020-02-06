@@ -1,0 +1,11 @@
+<header>
+    <h2>Gallery</h2>
+    <div class='flex-wrapper'></div>
+    <a mat-button routerLink='/gallery'>New</a>
+    <a mat-button routerLink='/auth' 
+    *ngIf="!(isAuthenticated); else logged">Log In</a>
+    <ng-template #logged>
+            <button mat-button (click)="logOut()">LogOut</button>
+            <h3>{{client.name}}:<span>{{client.id}}</span></h3>
+    </ng-template>
+</header>

@@ -1,0 +1,48 @@
+<div class='galleryContainer'>
+    <div class=noPicture *ngIf="pictures.length == 0">
+        <img *ngIf="!(isLoading | async)" src="/assets/image/whoops.png">
+        <mat-progress-spinner *ngIf="isLoading | async"></mat-progress-spinner>
+    </div>
+    <div *ngFor="let picture of pictures" class="imageBlock">
+        <img src={{picture.image.contentUrl}} (click)="showPic(picture)">
+    </div>
+</div>
+
+
+
+<div class = 'showContainer' *ngIf="isShowing | async">
+    <div class = 'fogging' (click)="isShowing.next(false)"></div>
+    <div class = 'viewBlock'>
+        <img [src]='picToShow.image.contentUrl'>
+        <h1>{{picToShow.name}}</h1>
+        <h2>{{picToShow.description}}</h2>
+    </div>
+</div>
+
+<div class = 'uploadContainer' *ngIf="isAdding | async">
+    <div class = 'fogging' (click)="isAdding.next(false)"></div>
+    <div class = 'uploadForm'>
+        <form [formGroup]='uploadForm'>
+            <mat-form-field>
+                <input matInput placeholder="Name" type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Description" type="text" formControlName="description">
+            </mat-form-field>
+                <mat-checkbox color="primary" formControlName="popular">Popular</mat-checkbox>
+                <mat-checkbox color="primary" formControlName="new">New</mat-checkbox>
+                <input type="file" accept="image/*" formControlName="file" style="display: none"
+                (change)="selectFile($event)" #uploadFile>
+                <button mat-button (click)="uploadFile.click()">Select File</button>
+            <button mat-button (click)="sendPicture(uploadForm)" type="submit">POST</button>
+        </form>
+    </div>
+</div>
+
+<div class = 'pageSwitcher' *ngIf="!(isAdding | async)">
+    <button mat-button (click)="getPhotos(1)"><<</button>
+    <button mat-button (click)="getPhotos(currentPage - 1)"> < </button>
+    <button mat-button *ngIf="isAuth"(click)="isAdding.next(true)">+</button>
+    <button mat-button (click)="getPhotos(currentPage + 1)">></button>
+    <button mat-button (click)="getPhotos(maxPage)">>></button>
+</div>

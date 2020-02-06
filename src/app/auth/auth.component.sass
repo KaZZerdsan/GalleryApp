@@ -1,0 +1,37 @@
+=flexColumn
+    display: flex
+    flex-direction: column
+   
+mat-form-field
+    color: gray
+
+form
+    +flexColumn
+    
+.authBlock
+    margin: auto
+    padding: 10px
+    border-radius: 5%
+    box-shadow: 0 0 10px #ff9090
+    width: 20%
+    background: #ff9090
+    +flexColumn
+    align-items: center
+    animation-name: opacity
+    animation-duration: 1s
+    label, input
+        color: white    
+
+.errorMessageBlock
+    margin: 30px auto
+    width: 80%
+    p
+        text-align: center
+        margin: 0
+        font-size: 20px
+
+@keyframes opacity
+    0%
+        opacity: 0%
+    100%
+        opacity: 100%

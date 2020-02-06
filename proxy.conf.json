@@ -1,0 +1,14 @@
+{
+    "/api": {
+      "target": "http://gallery.dev.webant.ru",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/oauth": {
+      "target": "http://gallery.dev.webant.ru",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

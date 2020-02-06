@@ -1,0 +1,32 @@
+=slideTop
+    animation-name: slide
+    animation-duration: 1s
+    
+header
+    display: flex
+    justify-content: space-around
+    align-items: center
+    a, button
+        +slideTop
+        font-size: 20px 
+        width: 10%
+    a:hover, button:hover
+        color: #70003e
+    h3
+        +slideTop
+        width: 20%
+        text-align: center
+        font-family: sans-serif
+        span
+            font-size: 14px
+    .flex-wrapper
+        width: 30%
+    .clientInfo
+        display: flex
+        justify-content: space-around
+        
+@keyframes slide
+    0%
+        transform: translateY(-100px)
+    100%
+        transform: translateY(0)

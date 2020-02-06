@@ -1,0 +1,48 @@
+<div class="authContainer">
+<div class="authBlock">
+      <span>
+        <label>Sign Up</label>
+        <mat-slide-toggle [color]="color" [checked]="checked" (change)="checked = !checked">
+        </mat-slide-toggle>
+        <label>Sign In</label>
+      </span>
+      <div *ngIf="checked; else SignUpForm">
+        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+          <mat-form-field>
+            <input matInput placeholder="ID" formControlName="id" (blur)="checkAuthForm()">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="password" formControlName="password" (blur)="checkAuthForm()">
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="signInValidate | async">Submit</button>
+        </form>
+      </div>
+    
+      <ng-template #SignUpForm>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <mat-form-field>
+          <input matInput placeholder="Full Name" formControlName="fullName" (blur)="checkSignUpForm()">
+        </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" (blur)="checkSignUpForm()">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Phone" formControlName="phone" (blur)="checkSignUpForm()">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" (blur)="checkSignUpForm()">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" (blur)="checkSignUpForm()">
+          </mat-form-field>
+          <button mat-raised-button type="submit" color="primary" [disabled]="signUpValidate | async">OK</button>
+        </form>
+      </ng-template>
+    </div>
+    <div class="errorMessageBlock" *ngIf="this.error.value !==[]">
+      <p *ngFor="let error of this.error.value">
+        {{error}}
+      </p>
+    </div>
+  </div>
+  
